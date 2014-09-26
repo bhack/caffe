@@ -1,6 +1,8 @@
 #ifndef CAFFE_LAYER_FACTORY_H_
 #define CAFFE_LAYER_FACTORY_H_
 
+#include <map>
+
 #include "caffe/common.hpp"
 #include "caffe/proto/caffe.pb.h"
 
@@ -54,18 +56,18 @@ class LayerRegisterer {
 
 
 #define REGISTER_LAYER_CREATOR(type, creator, classname)                       \
- static LayerRegisterer<float> g_creator_f_##classname(type, creator<float>);  \
- static LayerRegisterer<double> g_creator_d_##classname(type, creator<double>)
+  static LayerRegisterer<float> g_creator_f_##classname(type, creator<float>); \
+  static LayerRegisterer<double> g_creator_d_##classname(type, creator<double>)
 
 #define REGISTER_LAYER_CLASS(type, clsname)                                    \
- template <typename Dtype>                                                     \
- Layer<Dtype>* Creator_##clsname(const LayerParameter& param) {                \
-   return new clsname<Dtype>(param);                                           \
- }                                                                             \
- static LayerRegisterer<float> g_creator_f_##clsname(                          \
-     type, Creator_##clsname<float>);                                          \
- static LayerRegisterer<double> g_creator_d_##clsname(                         \
-     type, Creator_##clsname<double>)
+  template <typename Dtype>                                                    \
+  Layer<Dtype>* Creator_##clsname(const LayerParameter& param) {               \
+    return new clsname<Dtype>(param);                                          \
+  }                                                                            \
+  static LayerRegisterer<float> g_creator_f_##clsname(                         \
+      type, Creator_##clsname<float>);                                         \
+  static LayerRegisterer<double> g_creator_d_##clsname(                        \
+      type, Creator_##clsname<double>)
 
 // A function to get a specific layer from the specification given in
 // LayerParameter. Ideally this would be replaced by a factory pattern,
