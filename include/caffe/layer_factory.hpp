@@ -93,20 +93,20 @@ class LayerRegisterer {
 };
 
 
-#define REGISTER_LAYER_CREATOR(type, creator)                                  \
-  static LayerRegisterer<float> g_creator_f_##type(                            \
-      LayerParameter_LayerType_##type, creator<float>);                        \
-  static LayerRegisterer<double> g_creator_d_##type(                           \
+#define REGISTER_LAYER_CREATOR(type, creator) \
+  static LayerRegisterer<float> g_creator_f_##type( \
+      LayerParameter_LayerType_##type, creator<float>); \
+  static LayerRegisterer<double> g_creator_d_##type( \
       LayerParameter_LayerType_##type, creator<double>)
 
-#define REGISTER_LAYER_CLASS(type, clsname)                                    \
-  template <typename Dtype>                                                    \
-  Layer<Dtype>* Creator_##clsname(const LayerParameter& param) {               \
-    return new clsname<Dtype>(param);                                          \
-  }                                                                            \
-  static LayerRegisterer<float> g_creator_f_##clsname(                         \
-      LayerParameter_LayerType_##type, Creator_##clsname<float>);                \
-  static LayerRegisterer<double> g_creator_d_##clsname(                        \
+#define REGISTER_LAYER_CLASS(type, clsname) \
+  template <typename Dtype> \
+  Layer<Dtype>* Creator_##clsname(const LayerParameter& param) { \
+    return new clsname<Dtype>(param); \
+  } \
+  static LayerRegisterer<float> g_creator_f_##clsname( \
+      LayerParameter_LayerType_##type, Creator_##clsname<float>); \
+  static LayerRegisterer<double> g_creator_d_##clsname( \
       LayerParameter_LayerType_##type, Creator_##clsname<double>)
 
 // A function to get a specific layer from the specification given in
