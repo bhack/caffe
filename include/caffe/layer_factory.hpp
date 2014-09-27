@@ -87,7 +87,7 @@ class LayerRegisterer {
  public:
   LayerRegisterer(const LayerParameter_LayerType& type,
                   Layer<Dtype>* (*creator)(const LayerParameter&)) {
-    LOG(INFO) << "Registering layer type: " << type;
+    // LOG(INFO) << "Registering layer type: " << type;
     LayerRegistry<Dtype>::AddCreator(type, creator);
   }
 };
