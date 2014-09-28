@@ -6,7 +6,8 @@ set -e
 MAKE="make --jobs=$NUM_THREADS"
 
 # Install apt packages where the Ubuntu 12.04 default and ppa works for Caffe
-
+  add-apt-repository --yes ppa:ubuntu-toolchain-r/test/
+  
 # This ppa is for gflags and glog
 add-apt-repository -y ppa:tuleu/precise-backports
 apt-get -y update
@@ -18,7 +19,10 @@ apt-get install \
     libprotobuf-dev protobuf-compiler \
     libatlas-dev libatlas-base-dev \
     libhdf5-serial-dev libgflags-dev libgoogle-glog-dev \
-    bc
+    bc g++-4.8
+
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 20
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 20
 
 # Add a special apt-repository to install CMake 2.8.9 for CMake Caffe build,
 # if needed.  By default, Aptitude in Ubuntu 12.04 installs CMake 2.8.7, but
