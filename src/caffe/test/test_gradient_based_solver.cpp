@@ -19,6 +19,7 @@ namespace caffe {
 
 template <typename TypeParam>
 class GradientBasedSolverTest : public MultiDeviceTest<TypeParam> {
+  typedef typename TypeParam::Dtype Dtype;
 
  protected:
   GradientBasedSolverTest() :
