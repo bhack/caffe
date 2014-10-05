@@ -261,13 +261,13 @@ ifdef CUSTOM_CXX
 endif
 
 # Static linking
-ifneq (,$(findstring clang++,$(CXX)))
-	STATIC_LINK_COMMAND := -Wl,-force_load $(STATIC_NAME) -shared
-else ifneq (,$(findstring g++,$(CXX)))
+#ifneq (,$(findstring clang++,$(CXX)))
+	#STATIC_LINK_COMMAND := -Wl,-force_load $(STATIC_NAME) -shared
+#else ifneq (,$(findstring g++,$(CXX)))
 	STATIC_LINK_COMMAND := -Wl,--whole-archive $(STATIC_NAME) -Wl,--no-whole-archive
-else
-	$(error Cannot static link with the $(CXX) compiler.)
-endif
+#else
+#	$(error Cannot static link with the $(CXX) compiler.)
+#endif
 
 # Debugging
 ifeq ($(DEBUG), 1)
