@@ -6,13 +6,13 @@ set -e
 MAKE="make --jobs=$NUM_THREADS"
 
 # Install apt packages where the Ubuntu 12.04 default and ppa works for Caffe
-LLVM_VERSION=3.5*
+LLVM_VERSION=3.5
 sudo add-apt-repository --yes ppa:h-rayflood/llvm
 sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
-sudo add-apt-repository --yes 'deb http://llvm.org/apt/precise/ llvm-toolchain-precise main'
+sudo add-apt-repository --yes 'deb http://llvm.org/apt/precise/ llvm-toolchain-precise-3.5 main'
 wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
 sudo apt-get -qq update
-sudo apt-get -qq install libclang-${LLVM_VERSION}-dev clang-${LLVM_VERSION}
+sudo apt-get install libclang-${LLVM_VERSION}-dev clang-${LLVM_VERSION}
 export LD_LIBRARY_PATH=/usr/lib/llvm-${LLVM_VERSION}/lib/
 export PATH=/usr/lib/llvm-${LLVM_VERSION}/bin:$PATH
 # This ppa is for gflags and glog
