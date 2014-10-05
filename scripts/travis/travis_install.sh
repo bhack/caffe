@@ -13,6 +13,8 @@ sudo add-apt-repository --yes 'deb http://llvm.org/apt/precise/ llvm-toolchain-p
 wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
 sudo apt-get -qq update
 sudo apt-get install libclang-${LLVM_VERSION}-dev clang-${LLVM_VERSION}
+sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.5 20
+sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.5 20
 export LD_LIBRARY_PATH=/usr/lib/llvm-${LLVM_VERSION}/lib/
 export PATH=/usr/lib/llvm-${LLVM_VERSION}/bin:$PATH
 # This ppa is for gflags and glog
