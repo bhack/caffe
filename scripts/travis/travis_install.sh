@@ -6,7 +6,7 @@ set -e
 MAKE="make --jobs=$NUM_THREADS"
 
 # Install apt packages where the Ubuntu 12.04 default and ppa works for Caffe
-LLVM_VERSION=3.5
+LLVM_VERSION=3.5*
 sudo add-apt-repository --yes ppa:h-rayflood/llvm
 sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
 sudo add-apt-repository --yes 'deb http://llvm.org/apt/precise/ llvm-toolchain-precise main'
